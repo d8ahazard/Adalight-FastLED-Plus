@@ -16,6 +16,32 @@ For this sketch to work, you'll need to have a copy of the FastLED library. You 
 
 For more information on my own ambilight setup, see [the project page](https://www.partsnotincluded.com/diy-ambilight-ws2812b/) on [PartsNotIncluded.com](http://www.partsnotincluded.com/).
 
+## What's the "Plus" For?
+
+I've added a few small features for convenience/completeness:
+
+A secondary command protocol, currently only used to request device state and set brightness...but extensible to really...anything.
+The option to store user-defined brightness in EEPROM, allowing changes to persist between power off/on.
+Gamma correction...more or less the same values used by WLED.
+A "maximum brightness" value, used to restrict the max input from the user to avoid power issues.
+
+
+## Future Ideas
+
+I don't want to make this too bloated - but I'm considering the possibility of adding a few more features, just haven't decided when or if I will
+for sure or not:
+
+Auto-Brightness-Limiter: Similar to WLED, a simple option that can restrict the overall brightness of the LEDs if the total appx. used voltage
+exceeds a user-defined limit.
+
+Setter for LED Count, type: Because the command protocol is pretty extensible, adding options to set other params like LED count, type, debugging,
+or even Gamma Correction is quite trivial.
+
+Adjustable gamma correction: Just another parameter with a quick function to calculate the Gamma Table being used.
+
+Startup animation: Because why not? :P 
+
+
 ## Basic Setup
 
 Open the LEDstream_FastLED file in the Arduino IDE and customize the settings at the top for your setup. You will need to change:
@@ -28,7 +54,7 @@ If you are using a 4-wire LED chipset like APA102 or SK9822, you will need to un
 
 Upload to your Arduino and use a corresponding PC application to stream color data. You can get the Processing files from the [main Adalight repository](https://github.com/adafruit/Adalight), though I would recommend using Patrick Siegler's fork of Lightpacks's Prismatik, which you can find [here](https://github.com/psieg/Lightpack/releases).
 
-## Additional Settings
+## Additional Settings/Features
 
 There are additional settings to allow for adjusting:
 
@@ -38,6 +64,7 @@ There are additional settings to allow for adjusting:
 - Serial speed
 - Serial timeout length
 - Store brightness to EEPROM
+- Gamma correction
 
 There are also optional settings to clear the LEDs on reset or flush the incoming serial buffer after every latch. This latter option is enabled by default to help with flickering when using WS2812B LEDs.
 
